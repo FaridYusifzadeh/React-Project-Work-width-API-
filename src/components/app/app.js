@@ -4,8 +4,8 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorBoundry from '../error-boundry';
 
-import ItemDetails, { Record } from "../item-details/item-details";
-import SwapiService from "../../services/swapi-service";
+import ItemDetails, { Record } from '../item-details/item-details';
+import SwapiService from '../../services/swapi-service';
 
 import {
   PersonDetails,
@@ -19,7 +19,6 @@ import {
 import './app.css';
 
 export default class App extends Component {
-
   swapiService = new SwapiService();
 
   state = {
@@ -27,35 +26,29 @@ export default class App extends Component {
   };
 
   toggleRandomPlanet = () => {
-    this.setState((state) => {
+    this.setState(state => {
       return {
         showRandomPlanet: !state.showRandomPlanet
-      }
+      };
     });
   };
 
   render() {
+    const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
-    const planet = this.state.showRandomPlanet ?
-      <RandomPlanet/> :
-      null;
-
-    const { getPerson,
-            getStarship,
-            getPersonImage,
-            getStarshipImage,
-            getAllPeople,
-            getAllPlanets } = this.swapiService;
+    const {
+      getPerson,
+      getStarship,
+      getPersonImage,
+      getStarshipImage,
+      getAllPeople,
+      getAllPlanets
+    } = this.swapiService;
 
     const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage} >
-
-        <Record field="gender" label="Gender" />
-        <Record field="eyeColor" label="Eye Color" />
-
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
+        <Record field='gender' label='Gender' />
+        <Record field='eyeColor' label='Eye Color' />
       </ItemDetails>
     );
 
@@ -63,17 +56,17 @@ export default class App extends Component {
       <ItemDetails
         itemId={5}
         getData={getStarship}
-        getImageUrl={getStarshipImage}>
-
-        <Record field="model" label="Model" />
-        <Record field="length" label="Length" />
-        <Record field="costInCredits" label="Cost" />
+        getImageUrl={getStarshipImage}
+      >
+        <Record field='model' label='Model' />
+        <Record field='length' label='Length' />
+        <Record field='costInCredits' label='Cost' />
       </ItemDetails>
     );
 
     return (
       <ErrorBoundry>
-        <div className="stardb-app">
+        <div className='stardb-app'>
           <Header />
 
           <PersonDetails itemId={11} />
@@ -87,7 +80,6 @@ export default class App extends Component {
           <StarshipList />
 
           <PlanetList />
-
         </div>
       </ErrorBoundry>
     );

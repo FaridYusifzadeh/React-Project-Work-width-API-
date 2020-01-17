@@ -28,5 +28,6 @@
 
 .header button {
   height: 2.2rem;
-  margin-top: 3px;
+  margin-top: 1px;
+  margin-left: 3px;
 }
